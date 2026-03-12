@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar Magazine | Best Bars, Cocktails & Spirits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-page: #F5F0EB;
+  --bg-card: #FFFFFF;
+  --bg-card-warm: #F0EBE4;
+  --bg-dark: #1A1A1A;
+  --bg-accent: #E8F4F0;
+  --bg-accent-pink: #EDBBBB;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-tertiary: #9A9A9A;
+  --text-inverse: #FFFFFF;
+  --accent: #C4603C;
+  --border: #E0D8D0;
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --container: 1320px;
+  --gap: 16px;
+  --radius: 20px;
+  --nav-h: 64px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding: var(--gap);
+  padding-top: 0;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { text-decoration: none; color: inherit; }
+button { border: none; cursor: pointer; font-family: inherit; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+/* ====== NAV ====== */
+.nav-spacer { height: calc(var(--nav-h) + var(--gap) + 12px); }
+
+.nav-wrapper {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 12px var(--gap) 0;
+  display: flex; justify-content: center;
+  pointer-events: none;
+}
+.nav {
+  max-width: var(--container); width: 100%;
+  height: var(--nav-h);
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  pointer-events: all;
+  transition: box-shadow 0.4s var(--ease);
+}
+.nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
+.nav-inner {
+  padding: 0 28px; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo img { height: 29px; width: auto; }
+.nav-links {
+  display: flex; align-items: center; gap: 28px; list-style: none;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-badge {
+  background: var(--accent); color: #fff;
+  font-size: 9px; font-weight: 700;
+  padding: 2px 6px; border-radius: 8px;
+  margin-left: 5px; text-transform: uppercase;
+  letter-spacing: 0.04em; vertical-align: 1px;
+}
+.nav-search {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px; padding: 7px 14px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  cursor: pointer; transition: all 0.3s;
+}
+.nav-search:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+.nav-mobile { display: none; background: none; color: white; padding: 8px; }
+
+/* ====== HERO ====== */
+.hero {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 520px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.45) 45%,
+    rgba(0,0,0,0.15) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 48px 48px;
+  width: 100%;
+  max-width: 720px;
+}
+.hero-cat {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #fff; background: var(--accent);
+  padding: 5px 14px; border-radius: 100px;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-size: clamp(30px, 3.5vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.hero-excerpt {
+  font-size: 15px; line-height: 1.65;
+  color: rgba(255,255,255,0.75);
+  max-width: 560px;
+  margin-bottom: 28px;
+}
+.hero-read {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: #fff; font-size: 14px; font-weight: 600;
+  padding: 14px 28px; border-radius: 100px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s var(--ease);
+}
+.hero-read:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.45);
+}
+.hero-read svg { transition: transform 0.3s var(--ease); }
+.hero-read:hover svg { transform: translateX(3px); }
+
+.view-all {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--text-secondary);
+  border: 1px solid var(--border); padding: 7px 14px;
+  border-radius: 100px; transition: all 0.3s;
+}
+.view-all:hover { border-color: var(--text-primary); color: var(--text-primary); }
+
+/* ====== SECTION HEADER BAR ====== */
+.section-bar {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: var(--gap);
+}
+.section-bar h2 {
+  font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.filter-select {
+  appearance: none; -webkit-appearance: none;
+  padding: 8px 32px 8px 16px; border-radius: 100px;
+  font-size: 14px; font-weight: 500; font-family: var(--font);
+  background: #fff; border: 1px solid var(--border);
+  color: var(--text-primary); cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235A5A5A' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+}
+
+/* ====== CONTENT CARDS ====== */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.card-tag {
+  font-size: 11px; font-weight: 500;
+  padding: 5px 14px; border-radius: 100px;
+  border: 1px solid var(--border); color: var(--text-secondary);
+}
+.card h3 {
+  font-size: 22px; font-weight: 400;
+  line-height: 1.25; letter-spacing: -0.01em;
+  margin-bottom: 0;
+}
+.card h3 strong { font-weight: 700; }
+
+/* White card: image top, text bottom */
+.card-img-top {
+  height: 260px;
+  overflow: hidden;
+}
+.card-img-top img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.card:hover .card-img-top img { transform: scale(1.04); }
+.card-body {
+  padding: 20px 24px 24px;
+}
+.card-body .card-excerpt {
+  font-size: 13px; color: var(--text-secondary);
+  line-height: 1.55; margin-top: 10px;
+}
+
+/* Card full-bleed (image background with text overlay) */
+.card.card-bleed {
+  position: relative;
+  min-height: 380px;
+  justify-content: flex-end;
+}
+.card.card-bleed .card-bleed-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.card.card-bleed:hover .card-bleed-bg { transform: scale(1.04); }
+.card.card-bleed .card-bleed-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.78) 0%,
+    rgba(0,0,0,0.35) 50%,
+    rgba(0,0,0,0.1) 100%
+  );
+}
+.card.card-bleed .card-top {
+  position: relative; z-index: 2;
+  padding: 28px 28px 28px;
+}
+.card.card-bleed .card-tag {
+  border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.1);
+}
+.card.card-bleed h3 { color: #fff; font-size: 22px; }
+.card.card-bleed h3 strong { color: #fff; }
+.card.card-bleed .card-excerpt {
+  font-size: 13px; color: rgba(255,255,255,0.65);
+  line-height: 1.55; margin-top: 10px;
+}
+.card.card-bleed .card-read {
+  display: inline-block; margin-top: 14px;
+  font-size: 13px; font-weight: 600; color: #fff;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* Sponsor / banner card */
+.card.card-sponsor {
+  position: relative;
+  min-height: 380px;
+  overflow: hidden;
+  padding: 0;
+}
+.card-sponsor-label {
+  position: absolute; top: 12px; left: 12px; z-index: 3;
+  font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px; border-radius: 100px;
+}
+
+/* Card warm background */
+.card.card-warm { background: var(--bg-card-warm); }
+
+/* ====== CTA BANNER ====== */
+.cta-banner {
+  margin-top: var(--gap);
+  background: var(--bg-accent);
+  border-radius: var(--radius);
+  padding: 56px 40px;
+  text-align: center;
+}
+.cta-banner h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 500; letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.cta-banner p {
+  font-size: 15px; color: var(--text-secondary);
+  margin-bottom: 28px; max-width: 600px; margin-left: auto; margin-right: auto;
+  white-space: nowrap;
+}
+.cta-form {
+  display: flex; gap: 10px; justify-content: center;
+  max-width: 460px; margin: 0 auto;
+}
+.cta-input {
+  flex: 1; padding: 13px 20px;
+  border: 1px solid var(--border); border-radius: 100px;
+  font-size: 14px; font-family: var(--font);
+  background: #fff; outline: none;
+}
+.cta-input:focus { border-color: var(--text-primary); }
+.cta-submit {
+  background: var(--text-primary); color: #fff;
+  padding: 13px 24px; border-radius: 100px;
+  font-size: 14px; font-weight: 600; transition: all 0.3s;
+}
+.cta-submit:hover { background: #333; }
+
+/* ====== BARS SECTION ====== */
+.bars-wrapper {
+  margin-top: var(--gap);
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 32px;
+  position: relative;
+}
+.bars-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 4px;
+}
+.bars-grid::-webkit-scrollbar { display: none; }
+.bar-card {
+  cursor: pointer;
+  transition: transform 0.3s var(--ease);
+  flex: 0 0 calc((100% - 80px) / 5);
+  min-width: 0;
+}
+.bar-card:hover { transform: translateY(-3px); }
+.bar-img {
+  height: 220px; border-radius: 14px;
+  overflow: hidden; margin-bottom: 12px;
+}
+.bar-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.bar-card:hover .bar-img img { transform: scale(1.04); }
+.bar-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 1px; }
+.bar-card .bar-city { font-size: 13px; color: var(--text-tertiary); }
+.bar-card .bar-link {
+  display: inline-block; margin-top: 6px;
+  font-size: 13px; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+/* Scroll arrow for bars */
+.bars-scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 3;
+  transition: all 0.2s;
+}
+.bars-scroll-btn:hover { background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.bars-scroll-btn.scroll-left { left: 12px; }
+.bars-scroll-btn.scroll-right { right: 12px; }
+.bars-scroll-btn svg { width: 18px; height: 18px; stroke: var(--text-primary); }
+
+/* ====== FOOTER ====== */
+.footer {
+  margin-top: var(--gap);
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 56px 40px 32px;
+  color: var(--text-inverse);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.2fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-logo-text {
+  font-size: 18px; font-weight: 700;
+  margin-bottom: 14px;
+}
+.footer-desc {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  line-height: 1.65; max-width: 300px; margin-bottom: 20px;
+}
+.footer-social { display: flex; gap: 10px; }
+.footer-social a {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.5); transition: all 0.3s;
+}
+.footer-social a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.footer-col h4 {
+  font-size: 15px; font-weight: 600;
+  margin-bottom: 18px;
+}
+.footer-col ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 24px;
+}
+.footer-col li { margin-bottom: 6px; }
+.footer-col a {
+  font-size: 14px; color: rgba(255,255,255,0.55); transition: color 0.3s;
+}
+.footer-col a:hover { color: #fff; }
+.footer-contact-text {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  line-height: 1.6; margin-bottom: 16px;
+}
+.footer-email {
+  font-size: 14px; font-weight: 600; color: #fff;
+  margin-bottom: 16px; display: block;
+}
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 20px; font-size: 12px; color: rgba(255,255,255,0.3);
+}
+.footer-bottom a { color: rgba(255,255,255,0.3); transition: color 0.3s; }
+.footer-bottom a:hover { color: #fff; }
+
+/* ====== ANIMATIONS ====== */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: all 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1024px) {
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .bar-card { flex: 0 0 calc((100% - 40px) / 3); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  :root { --nav-h: 56px; }
+  .nav-links { display: none; }
+  .nav-mobile { display: block; }
+  .nav-inner { justify-content: center; position: relative; }
+  .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-search { position: absolute; left: 16px; padding: 7px; border-radius: 50%; }
+  .nav-search-text { display: none; }
+  .nav-mobile { position: absolute; right: 16px; }
+  .hero { min-height: 400px; }
+  .hero-content { padding: 32px 28px; }
+  .hero-title { font-size: 28px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .bars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
+  .bar-card { flex: none; min-width: 0; }
+  .bars-scroll-btn { display: none; }
+  .cta-form { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .section-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrapper">
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="https://barmagazine.com/wp-content/uploads/2024/05/BARMAG-LOGO-WHITE.png" alt="Bar Magazine">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">News</a></li>
+      <li><a href="#">Cocktails</a></li>
+      <li><a href="#">Feature</a></li>
+      <li><a href="#">Interviews</a></li>
+      <li><a href="#">Bars</a></li>
+      <li><a href="#">Books</a></li>
+      <li><a href="#">Spirits</a></li>
+      <li><a href="#">Wines</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Awards <span class="nav-badge">New</span></a></li>
+    </ul>
+    <button class="nav-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span class="nav-search-text">Search for</span>
+    </button>
+    <button class="nav-mobile" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+</div>
+
+<div class="nav-spacer"></div>
+
+<div class="container">
+
+<!-- HERO -->
+<div class="hero reveal" style="background-image:url('https://barmagazine.com/wp-content/uploads/2026/03/Cocktail-Trends-2026.jpeg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-cat">Features</span>
+    <h1 class="hero-title">Cocktail Trends 2026: Top 6 Shifts Shaping the Bar</h1>
+    <p class="hero-excerpt">Cocktail trends 2026 is defined by a single tension: consumers are drinking less but demanding more craft, more theater, and more meaning in every sip.</p>
+    <a href="https://barmagazine.com/cocktail-trends-2026-top-6-shifts-shaping-the-bar/" class="hero-read">
+      Read Article
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FEATURED CONTENT HEADER -->
+<div class="section-bar reveal">
+  <h2>Featured Content You Might Like</h2>
+  <select class="filter-select">
+    <option>All</option>
+    <option>Featured</option>
+    <option>News</option>
+    <option>Cocktails</option>
+    <option>Feature</option>
+    <option>Interviews</option>
+    <option>Bars</option>
+    <option>Books</option>
+    <option>Spirits</option>
+    <option>Wines</option>
+    <option>Events</option>
+    <option>Awards</option>
+  </select>
+</div>
+
+<!-- ROW 1: 3 CARDS -->
+<div class="cards-grid">
+  <!-- Card 1: Jin Bo Law (image top, text bottom) -->
+  <div class="card reveal">
+    <div class="card-img-top">
+      <img src="https://barmagazine.com/wp-content/uploads/2026/03/Bei-Fung-Tong-%E9%81%BF%E9%A2%A8%E5%A1%98.jpg" alt="Jin Bo Law Hong Kong">
+    </div>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="card-tag">Cocktails</span>
+      </div>
+      <h3><strong>Jin Bo Law</strong> Hong Kong Cocktail Menu Review</h3>
+      <p class="card-excerpt">The most exciting Hong Kong cocktail menu review of 2026 starts with an airport.</p>
+    </div>
+  </div>
+
+  <!-- Card 2: BCA Week Stockholm (full-bleed image) -->
+  <div class="card card-bleed reveal reveal-d1">
+    <img class="card-bleed-bg" src="https://barmagazine.com/wp-content/uploads/2026/03/BCA-Week-Promo-2026-19.png" alt="BCA Week Stockholm">
+    <div class="card-bleed-overlay"></div>
+    <div class="card-top">
+      <div class="card-tags">
+        <span class="card-tag">News</span>
+      </div>
+      <h3><strong>World's Best Bars</strong> Head to Stockholm for BCA Week</h3>
+      <p class="card-excerpt">Eleven of the world's most celebrated cocktail bars descend on Stockholm for BCA Week.</p>
+    </div>
+  </div>
+
+  <!-- Card 3: 6 Women (full-bleed image) -->
+  <div class="card card-bleed reveal reveal-d2">
+    <img class="card-bleed-bg" src="https://barmagazine.com/wp-content/uploads/2026/03/6-Women-in-Latin-American-Hospitality.jpg" alt="6 Women Shaping Latin American Hospitality">
+    <div class="card-bleed-overlay"></div>
+    <div class="card-top">
+      <div class="card-tags">
+        <span class="card-tag">Features</span>
+      </div>
+      <h3><strong>6 Women</strong> Shaping Latin American Hospitality</h3>
+      <p class="card-excerpt">A new generation of professionals is redefining the future of cocktail culture and bar leadership.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 2: 3 CARDS -->
+<div class="cards-grid">
+  <!-- Card 4: FlipDog Shoreditch (full-bleed image) -->
+  <div class="card card-bleed reveal">
+    <img class="card-bleed-bg" src="https://barmagazine.com/wp-content/uploads/2026/03/Booths-1-e1772642204999.jpg" alt="FlipDog Opens in Shoreditch">
+    <div class="card-bleed-overlay"></div>
+    <div class="card-top">
+      <div class="card-tags">
+        <span class="card-tag">Bars</span>
+      </div>
+      <h3><strong>FlipDog</strong> Opens in Shoreditch</h3>
+      <p class="card-excerpt">London's Shoreditch bar scene welcomes a new arrival with the opening of FlipDog, a method-driven cocktail bar.</p>
+    </div>
+  </div>
+
+  <!-- Card 5: OZONE Hong Kong (image top, text bottom) -->
+  <div class="card reveal reveal-d1">
+    <div class="card-img-top">
+      <img src="https://barmagazine.com/wp-content/uploads/2026/03/the-foundry.jpg" alt="OZONE Hong Kong">
+    </div>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="card-tag">News</span>
+      </div>
+      <h3><strong>Asia's Best Bartenders</strong> Descend on OZONE Hong Kong</h3>
+      <p class="card-excerpt">Eight award-winning bartenders from Tokyo to Jakarta converge on OZONE Hong Kong.</p>
+    </div>
+  </div>
+
+  <!-- Card 6: Sponsor / Banner (Flavour Blaster) -->
+  <a href="https://flavourblaster.com/BARMAGAZINE" class="card card-sponsor reveal reveal-d2" style="text-decoration:none;">
+    <span class="card-sponsor-label">Sponsored</span>
+    <img src="sponsor.jpg" alt="Flavour Blaster â Bring Joy With Every Sip. Code: BarMagazine" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:var(--radius);">
+  </a>
+</div>
+
+<!-- CTA: ADD YOUR BAR -->
+<div class="cta-banner reveal">
+  <h2>Want to add your bar?</h2>
+  <p>If you run a bar and want to join our platform, get in touch with us!</p>
+  <div class="cta-form">
+    <input type="email" class="cta-input" placeholder="What's your work email?">
+    <button class="cta-submit">Contact us</button>
+  </div>
+</div>
+
+<!-- FEATURED BARS HEADER -->
+<div class="section-bar reveal" style="padding:20px 32px;">
+  <h2>Featured Bars</h2>
+  <select class="filter-select" id="bars-filter">
+    <option value="all">All Cities</option>
+    <option value="london">London</option>
+    <option value="tokyo">Tokyo</option>
+    <option value="bangkok">Bangkok</option>
+    <option value="new-york">New York</option>
+    <option value="dubai">Dubai</option>
+    <option value="hong-kong">Hong Kong</option>
+  </select>
+</div>
+
+<!-- BARS GRID -->
+<div class="bars-wrapper reveal">
+  <button class="bars-scroll-btn scroll-left" onclick="document.querySelector('.bars-grid').scrollBy({left:-300,behavior:'smooth'})" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="bars-scroll-btn scroll-right" onclick="document.querySelector('.bars-grid').scrollBy({left:300,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="bars-grid">
+    <div class="bar-card" data-city="london">
+      <div class="bar-img"><img src="https://barmagazine.com/wp-content/uploads/2026/03/Booths-1-e1772642204999.jpg" alt="FlipDog"></div>
+      <h4>FlipDog</h4>
+      <span class="bar-city">London</span><br>
+      <a href="https://barmagazine.com/flipdog-opens-in-shoreditch/" class="bar-link">See more</a>
+    </div>
+    <div class="bar-card" data-city="tokyo">
+      <div class="bar-img"><img src="https://barmagazine.com/wp-content/uploads/2026/02/250825-26on_TGR003-2.jpg" alt="THE GREY ROOM"></div>
+      <h4>THE GREY ROOM</h4>
+      <span class="bar-city">Tokyo</span><br>
+      <a href="https://barmagazine.com/the-grey-room-brings-spice-driven-mixology-to-ginza/" class="bar-link">See more</a>
+    </div>
+    <div class="bar-card" data-city="bangkok">
+      <div class="bar-img"><img src="https://barmagazine.com/wp-content/uploads/2026/01/Bar-Sathorn.jpg" alt="Bar Sathorn"></div>
+      <h4>Bar Sathorn</h4>
+      <span class="bar-city">Bangkok</span><br>
+      <a href="https://barmagazine.com/bar-sathorn-redefines-bangkok-as-a-cultural-exchange-bar/" class="bar-link">See more</a>
+    </div>
+    <div class="bar-card" data-city="new-york">
+      <div class="bar-img"><img src="https://barmagazine.com/wp-content/uploads/2025/12/Room_207_20251202_04.jpg" alt="Room 207"></div>
+      <h4>Room 207</h4>
+      <span class="bar-city">New York</span><br>
+      <a href="https://barmagazine.com/room-207-is-new-yorks-next-cocktail-tourism-destination/" class="bar-link">See more</a>
+    </div>
+    <div class="bar-card" data-city="dubai">
+      <div class="bar-img"><img src="https://barmagazine.com/wp-content/uploads/2025/12/BAR-TEAM-2-e1764960372164.jpg" alt="Top 10 Bars in Dubai"></div>
+      <h4>Top 10 Bars in Dubai</h4>
+      <span class="bar-city">Dubai</span><br>
+      <a href="https://barmagazine.com/top-10-bars-in-dubai-2025/" class="bar-link">See more</a>
+    </div>
+    <div class="bar-card" data-city="hong-kong">
+      <div class="bar-img"><img src="https://barmagazine.com/wp-content/uploads/2025/12/Pop-City-Byobu-Bar.jpeg" alt="POP CITY X PONY"></div>
+      <h4>POP CITY X PONY</h4>
+      <span class="bar-city">Hong Kong</span><br>
+      <a href="https://barmagazine.com/inside-pop-city-x-pony-full-menu-experience/" class="bar-link">See more</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer reveal">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-text">BarMagazineâ¢</div>
+      <p class="footer-desc">We offer a wide range of content for bar enthusiasts, from classic cocktail recipes to discovering the best bars worldwide.</p>
+      <div class="footer-social">
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.044 4.126H5.117z"/></svg></a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Cocktails</a></li>
+        <li><a href="#">Feature</a></li>
+        <li><a href="#">Interviews</a></li>
+        <li><a href="#">Bars</a></li>
+        <li><a href="#">Books</a></li>
+        <li><a href="#">Spirits</a></li>
+        <li><a href="#">Wines</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Awards</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p class="footer-contact-text">We'd love to hear from you! Whether you're interested in partnerships, press opportunities, or simply want to connect with our team, reach out anytime.</p>
+      <span class="footer-email">Just send an email to:<br>office@barmagazine.com</span>
+      <p class="footer-contact-text">Our team is based across the US, Europe, and Asia, giving us a truly global perspective and presence.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 BarMagazine. All Rights Reserved.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /container -->
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => obs.observe(el));
+
+// Bars horizontal scroll - show/hide arrows
+const barsGrid = document.querySelector('.bars-grid');
+const scrollLeft = document.querySelector('.scroll-left');
+const scrollRight = document.querySelector('.scroll-right');
+if (barsGrid && scrollLeft && scrollRight) {
+  function updateScrollBtns() {
+    const { scrollLeft: sl, scrollWidth, clientWidth } = barsGrid;
+    scrollLeft.style.display = sl > 10 ? 'flex' : 'none';
+    scrollRight.style.display = sl + clientWidth < scrollWidth - 10 ? 'flex' : 'none';
+  }
+  barsGrid.addEventListener('scroll', updateScrollBtns);
+  window.addEventListener('resize', updateScrollBtns);
+  setTimeout(updateScrollBtns, 500);
+}
+
+// Bars city filter
+const barsFilter = document.getElementById('bars-filter');
+if (barsFilter) {
+  barsFilter.addEventListener('change', function() {
+    const city = this.value;
+    const cards = document.querySelectorAll('.bar-card');
+    cards.forEach(card => {
+      if (city === 'all' || card.dataset.city === city) {
+        card.style.display = '';
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(12px)';
+        requestAnimationFrame(() => {
+          card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    // Update scroll buttons after filter
+    if (typeof updateScrollBtns === 'function') setTimeout(updateScrollBtns, 100);
+  });
+}
+</script>
+</body>
+</html>
