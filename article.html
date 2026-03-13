@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cocktail Trends 2026: Top 6 Shifts Shaping the Bar | Bar Magazine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-page: #F5F0EB;
+  --bg-card: #FFFFFF;
+  --bg-card-warm: #F0EBE4;
+  --bg-dark: #1A1A1A;
+  --bg-accent: #E8F4F0;
+  --bg-accent-pink: #EDBBBB;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-tertiary: #9A9A9A;
+  --text-inverse: #FFFFFF;
+  --accent: #C4603C;
+  --border: #E0D8D0;
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --container: 1320px;
+  --gap: 16px;
+  --radius: 20px;
+  --nav-h: 64px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding: var(--gap);
+  padding-top: 0;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { text-decoration: none; color: inherit; }
+button { border: none; cursor: pointer; font-family: inherit; }
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+/* ====== NAV ====== */
+.nav-spacer { height: calc(var(--nav-h) + var(--gap)); }
+
+.nav-wrapper {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 var(--gap) 0;
+  display: flex; justify-content: center;
+  pointer-events: none;
+}
+.nav {
+  max-width: var(--container); width: 100%;
+  height: var(--nav-h);
+  background: var(--bg-dark);
+  border-radius: 0 0 var(--radius) var(--radius);
+  pointer-events: all;
+  transition: box-shadow 0.4s var(--ease);
+}
+.nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.2); }
+.nav-inner {
+  padding: 0 28px; height: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo img { height: 29px; width: auto; }
+.nav-links {
+  display: flex; align-items: center; gap: 28px; list-style: none;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-badge {
+  background: var(--accent); color: #fff;
+  font-size: 9px; font-weight: 700;
+  padding: 2px 6px; border-radius: 8px;
+  margin-left: 5px; text-transform: uppercase;
+  letter-spacing: 0.04em; vertical-align: 1px;
+}
+.nav-search {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 100px; padding: 7px 14px;
+  font-size: 13px; color: rgba(255,255,255,0.4);
+  cursor: pointer; transition: all 0.3s;
+}
+.nav-search:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+.nav-mobile { display: none; background: none; color: white; padding: 8px; }
+
+/* ====== ARTICLE HERO ====== */
+.article-hero {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+}
+.article-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.4) 50%,
+    rgba(0,0,0,0.15) 100%
+  );
+}
+.article-hero-content {
+  position: relative; z-index: 2;
+  padding: 48px 48px;
+  width: 100%;
+  max-width: 800px;
+}
+.article-hero-cat {
+  display: inline-block;
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #fff; background: var(--accent);
+  padding: 5px 14px; border-radius: 100px;
+  margin-bottom: 20px;
+}
+.article-hero-title {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.article-hero-meta {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 13px; color: rgba(255,255,255,0.6);
+}
+.article-hero-meta .dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+/* ====== ARTICLE LAYOUT ====== */
+.article-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--gap);
+  margin-top: var(--gap);
+  align-items: start;
+}
+
+/* ====== ARTICLE BODY ====== */
+.article-body {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 48px 56px;
+}
+.article-body h2 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+.article-body p.lead {
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text-primary);
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+.article-body blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 20px 28px;
+  margin: 32px 0;
+  background: var(--bg-card-warm);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.article-body blockquote p {
+  font-size: 17px;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+.article-body blockquote cite {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+.article-body .article-img {
+  margin: 32px -16px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.article-body .article-img img {
+  width: 100%; height: auto;
+}
+.article-body .article-img figcaption {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding: 10px 4px 0;
+  text-align: center;
+}
+.article-body ul, .article-body ol {
+  margin: 16px 0 20px 24px;
+  color: var(--text-secondary);
+}
+.article-body li {
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+/* Author box */
+.author-box {
+  display: flex; gap: 16px; align-items: center;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.author-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--bg-card-warm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: var(--accent);
+  flex-shrink: 0;
+}
+.author-info h4 { font-size: 14px; font-weight: 600; }
+.author-info p { font-size: 13px; color: var(--text-tertiary); margin-bottom: 0; }
+
+/* Share bar */
+.share-bar {
+  display: flex; gap: 8px; align-items: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.share-bar span {
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-tertiary); margin-right: 8px;
+}
+.share-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card-warm);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.3s;
+  color: var(--text-secondary);
+}
+.share-btn:hover { background: var(--text-primary); color: #fff; }
+
+/* ====== SIDEBAR ====== */
+.sidebar {
+  display: flex; flex-direction: column; gap: var(--gap);
+  position: sticky;
+  top: calc(var(--nav-h) + var(--gap));
+  align-self: start;
+}
+
+/* Sidebar card */
+.sidebar-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.sidebar-card h3 {
+  font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+
+/* Related articles */
+.related-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.related-item:first-of-type { border-top: none; padding-top: 0; }
+.related-item:hover { opacity: 0.75; }
+.related-thumb {
+  width: 80px; height: 60px; border-radius: 10px;
+  overflow: hidden; flex-shrink: 0;
+}
+.related-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.related-info h4 {
+  font-size: 14px; font-weight: 600; line-height: 1.35;
+  margin-bottom: 4px;
+}
+.related-info .related-date {
+  font-size: 12px; color: var(--text-tertiary);
+}
+
+/* Newsletter sidebar */
+.sidebar-newsletter {
+  background: var(--bg-accent);
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+}
+.sidebar-newsletter h3 {
+  font-size: 18px; font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  margin-bottom: 8px;
+}
+.sidebar-newsletter p {
+  font-size: 13px; color: var(--text-secondary);
+  line-height: 1.6; margin-bottom: 18px;
+}
+.sidebar-newsletter input {
+  width: 100%; padding: 12px 16px;
+  border: 1px solid var(--border); border-radius: 100px;
+  font-size: 14px; font-family: var(--font);
+  background: #fff; outline: none;
+  margin-bottom: 10px;
+}
+.sidebar-newsletter input:focus { border-color: var(--text-primary); }
+.sidebar-newsletter button {
+  width: 100%; padding: 12px 20px;
+  background: var(--text-primary); color: #fff;
+  border-radius: 100px;
+  font-size: 14px; font-weight: 600;
+  transition: background 0.3s;
+}
+.sidebar-newsletter button:hover { background: #333; }
+
+/* Trending tags */
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag-pill {
+  display: inline-block;
+  font-size: 13px; font-weight: 500;
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid var(--border); color: var(--text-secondary);
+  transition: all 0.3s; cursor: pointer;
+}
+.tag-pill:hover {
+  border-color: var(--text-primary); color: var(--text-primary);
+  background: var(--bg-card-warm);
+}
+
+/* Sticky sidebar (now handled by .sidebar directly) */
+
+/* ====== FOOTER ====== */
+.footer {
+  margin-top: var(--gap);
+  background: var(--bg-dark);
+  border-radius: var(--radius);
+  padding: 56px 40px 32px;
+  color: var(--text-inverse);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr 1.2fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-logo-text {
+  font-size: 18px; font-weight: 700;
+  margin-bottom: 14px;
+}
+.footer-desc {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  line-height: 1.65; max-width: 300px; margin-bottom: 20px;
+}
+.footer-social { display: flex; gap: 10px; }
+.footer-social a {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.5); transition: all 0.3s;
+}
+.footer-social a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.footer-col h4 {
+  font-size: 15px; font-weight: 600;
+  margin-bottom: 18px;
+}
+.footer-col ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 24px;
+}
+.footer-col li { margin-bottom: 6px; }
+.footer-col a {
+  font-size: 14px; color: rgba(255,255,255,0.55); transition: color 0.3s;
+}
+.footer-col a:hover { color: #fff; }
+.footer-contact-text {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  line-height: 1.6; margin-bottom: 16px;
+}
+.footer-email {
+  font-size: 14px; font-weight: 600; color: #fff;
+  margin-bottom: 16px; display: block;
+}
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 20px; font-size: 12px; color: rgba(255,255,255,0.3);
+}
+.footer-bottom a { color: rgba(255,255,255,0.3); transition: color 0.3s; }
+.footer-bottom a:hover { color: #fff; }
+
+/* ====== EVENTS CALENDAR ====== */
+.events-list { display: flex; flex-direction: column; gap: 0; }
+.event-item {
+  display: flex; gap: 14px; align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+.event-item:first-child { border-top: none; padding-top: 0; }
+.event-date-badge {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--bg-card-warm);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.event-month {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--accent); line-height: 1.2;
+}
+.event-day {
+  font-size: 18px; font-weight: 700; color: var(--text-primary); line-height: 1.1;
+}
+.event-details h4 { font-size: 13px; font-weight: 600; line-height: 1.35; margin-bottom: 2px; }
+.event-location { font-size: 12px; color: var(--text-tertiary); }
+.events-see-all {
+  display: block; text-align: center;
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  margin-top: 16px; padding-top: 12px;
+  border-top: 1px solid var(--border);
+  transition: color 0.3s;
+}
+.events-see-all:hover { color: var(--text-primary); }
+
+/* Sidebar ad */
+.sidebar-ad { border-radius: var(--radius); overflow: hidden; }
+
+/* ====== ANIMATIONS ====== */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: all 0.7s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1024px) {
+  .article-layout { grid-template-columns: 1fr 300px; }
+  .article-body { padding: 40px 40px; }
+}
+@media (max-width: 768px) {
+  :root { --nav-h: 56px; }
+  .nav-links { display: none; }
+  .nav-mobile { display: block; }
+  .nav-inner { justify-content: center; position: relative; }
+  .nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav-search { position: absolute; left: 16px; padding: 7px; border-radius: 50%; }
+  .nav-search-text { display: none; }
+  .nav-mobile { position: absolute; right: 16px; }
+  .article-hero { min-height: 360px; }
+  .article-hero-content { padding: 32px 24px; }
+  .article-hero-title { font-size: 26px; }
+  .article-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar { position: static; max-height: none; overflow-y: visible; }
+  .article-body { padding: 32px 24px; }
+  .article-body .article-img { margin: 24px -8px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrapper">
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://barmagazine.com/wp-content/uploads/2024/05/BARMAG-LOGO-WHITE.png" alt="Bar Magazine">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Latest</a></li>
+      <li><a href="#">Bars</a></li>
+      <li><a href="#">People</a></li>
+      <li><a href="#">Cocktails</a></li>
+      <li><a href="#">Awards <span class="nav-badge">New</span></a></li>
+      <li><a href="#">Brands</a></li>
+      <li><a href="#">Events</a></li>
+    </ul>
+    <button class="nav-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <span class="nav-search-text">Search for</span>
+    </button>
+    <button class="nav-mobile" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+</div>
+
+<div class="nav-spacer"></div>
+
+<div class="container">
+
+<!-- ARTICLE HERO -->
+<div class="article-hero reveal" style="background-image:url('https://barmagazine.com/wp-content/uploads/2026/03/Cocktail-Trends-2026.jpeg');">
+  <div class="article-hero-overlay"></div>
+  <div class="article-hero-content">
+    <span class="article-hero-cat">Latest</span>
+    <h1 class="article-hero-title">Cocktail Trends 2026: Top 6 Shifts Shaping the Bar</h1>
+    <div class="article-hero-meta">
+      <span>By BarMagazine</span>
+      <span class="dot"></span>
+      <span>March 10, 2026</span>
+      <span class="dot"></span>
+      <span>8 min read</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE + SIDEBAR LAYOUT -->
+<div class="article-layout">
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body reveal">
+
+    <p class="lead">Cocktail trends 2026 is defined by a single tension: consumers are drinking less but demanding more craft, more theater, and more meaning in every sip. Here are the six shifts every bartender and bar owner needs to know.</p>
+
+    <h2>1. The Rise of Low-ABV and No-ABV Cocktails</h2>
+    <p>The mindful drinking movement has crossed the tipping point. In 2026, zero-proof cocktails aren't an afterthought &mdash; they're the centerpiece of menus at the world's best bars. Bartenders are applying the same rigor to NA drinks that they once reserved for classic shaken cocktails.</p>
+    <p>Leading this charge are ingredients like fermented teas, shrub syrups, and adaptogenic bitters that deliver complex flavor without relying on alcohol as a flavor carrier. The result is a new category of drink that feels sophisticated, intentional, and inclusive.</p>
+
+    <figure class="article-img">
+      <img src="https://barmagazine.com/wp-content/uploads/2026/03/photo-1578224709521-ecee303b012f-copy.jpg" alt="Vibrant red mocktail with lime and mint — no/low ABV cocktail trend 2026">
+      <figcaption>The no/low ABV movement is reshaping cocktail menus worldwide</figcaption>
+    </figure>
+
+    <h2>2. Hyper-Local Sourcing</h2>
+    <p>The farm-to-table ethos has reached the cocktail glass. Bars are foraging local botanicals, partnering with neighborhood distillers, and crafting house-made spirits that taste like their city. This isn't just about sustainability &mdash; it's about storytelling.</p>
+    <p>Guests want to know where their drink comes from. They want a cocktail that could only exist in this bar, in this city. In 2026, provenance is flavor.</p>
+
+    <blockquote>
+      <p>&ldquo;The best cocktail bar in the world is the one that tastes like where you are.&rdquo;</p>
+      <cite>&mdash; Ryan Chetiyawardana (Mr Lyan)</cite>
+    </blockquote>
+
+    <h2>3. Theatrical Serves and Multi-Sensory Experiences</h2>
+    <p>In an age of social media, presentation has become as important as taste. Bars are investing in smoke cloches, color-changing garnishes, aroma diffusers, and interactive glassware. But the best theatrical serves in 2026 go beyond the visual &mdash; they engage all five senses.</p>
+    <p>Think drinks that change temperature in your hand, garnishes that release fragrance as you sip, and glassware designed to amplify specific aromas. The goal is an experience that feels immersive, memorable, and deeply personal.</p>
+
+    <h2>4. Sustainability Beyond the Straw</h2>
+    <p>Ditching single-use plastics was just the beginning. In 2026, sustainability means rethinking the entire supply chain: closed-loop ingredient systems that turn citrus husks into cordials, spent coffee grounds into bitters, and vegetable trimmings into garnishes.</p>
+    <p>Forward-thinking bars are tracking their carbon footprint per drink, offering transparent sustainability metrics alongside tasting notes. It's no longer enough to be eco-friendly &mdash; guests want proof.</p>
+
+    <h2>5. AI-Assisted Menu Design</h2>
+    <p>Artificial intelligence is quietly transforming how bars design their menus. Machine learning algorithms analyze sales data, seasonal ingredient availability, flavor compound databases, and customer preferences to suggest new cocktail combinations that human bartenders might never have considered.</p>
+    <p>But this isn't about replacing the bartender. The most successful implementations use AI as a creative partner &mdash; a tool that expands the bartender's palette rather than replacing their intuition. The human touch remains irreplaceable; AI just gives it more colors to paint with.</p>
+
+    <h2>6. The Return of the Neighborhood Bar</h2>
+    <p>After years of destination cocktail bars and speakeasy-style exclusivity, 2026 is seeing a return to the local. The neighborhood bar &mdash; warm, welcoming, unpretentious &mdash; is making a comeback, but with elevated drinks programs that rival anything in the city center.</p>
+    <p>This shift reflects a broader cultural desire for community, belonging, and places where everyone knows your name (and your drink order). The best bars in 2026 won't just serve great cocktails. They'll be the living rooms of their neighborhoods.</p>
+
+    <!-- Author box -->
+    <div class="author-box">
+      <div class="author-avatar">BM</div>
+      <div class="author-info">
+        <h4>BarMagazine</h4>
+        <p>Our editorial team covers the latest in cocktail culture, bar design, and spirits worldwide.</p>
+      </div>
+    </div>
+
+    <!-- Share -->
+    <div class="share-bar">
+      <span>Share</span>
+      <button class="share-btn" title="Facebook">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </button>
+      <button class="share-btn" title="LinkedIn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </button>
+      <button class="share-btn" title="Copy link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      </button>
+    </div>
+
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+      <!-- Related Articles -->
+      <div class="sidebar-card reveal reveal-d1">
+        <h3>Related Articles</h3>
+
+        <a href="#" class="related-item">
+          <div class="related-thumb">
+            <img src="https://barmagazine.com/wp-content/uploads/2026/02/250825-26on_TGR003-2.jpg" alt="The Grey Room">
+          </div>
+          <div class="related-info">
+            <h4>Inside The Grey Room: Tokyo's Newest Hidden Bar</h4>
+            <span class="related-date">Feb 28, 2026</span>
+          </div>
+        </a>
+
+        <a href="#" class="related-item">
+          <div class="related-thumb">
+            <img src="https://barmagazine.com/wp-content/uploads/2025/12/Pop-City-Byobu-Bar.jpeg" alt="FlipDog London">
+          </div>
+          <div class="related-info">
+            <h4>FlipDog London: Where Cocktails Meet Street Culture</h4>
+            <span class="related-date">Feb 22, 2026</span>
+          </div>
+        </a>
+
+        <a href="#" class="related-item">
+          <div class="related-thumb">
+            <img src="https://barmagazine.com/wp-content/uploads/2026/01/Bar-Sathorn.jpg" alt="Bar Sathorn">
+          </div>
+          <div class="related-info">
+            <h4>Bar Sathorn: Bangkok's Best Kept Secret</h4>
+            <span class="related-date">Feb 15, 2026</span>
+          </div>
+        </a>
+
+        <a href="#" class="related-item">
+          <div class="related-thumb">
+            <img src="https://barmagazine.com/wp-content/uploads/2025/12/Room_207_20251202_04.jpg" alt="Room 207">
+          </div>
+          <div class="related-info">
+            <h4>Room 207: New York's Jazz-Infused Cocktail Lounge</h4>
+            <span class="related-date">Feb 8, 2026</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="sidebar-newsletter reveal reveal-d2">
+        <h3>Stay in the Mix</h3>
+        <p>Get the latest cocktail trends, bar openings, and industry insights delivered to your inbox.</p>
+        <input type="email" placeholder="Your email address">
+        <button>Subscribe</button>
+      </div>
+
+      <!-- Calendar of Events -->
+      <div class="sidebar-card reveal reveal-d2">
+        <h3>Upcoming Events</h3>
+        <div class="events-list">
+          <div class="event-item">
+            <div class="event-date-badge">
+              <span class="event-month">MAR</span>
+              <span class="event-day">22</span>
+            </div>
+            <div class="event-details">
+              <h4>Bar Convent Asia 2026</h4>
+              <span class="event-location">Singapore</span>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-badge">
+              <span class="event-month">APR</span>
+              <span class="event-day">05</span>
+            </div>
+            <div class="event-details">
+              <h4>World Cocktail Day Festival</h4>
+              <span class="event-location">London, UK</span>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-badge">
+              <span class="event-month">APR</span>
+              <span class="event-day">18</span>
+            </div>
+            <div class="event-details">
+              <h4>Tales of the Cocktail</h4>
+              <span class="event-location">New Orleans, US</span>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date-badge">
+              <span class="event-month">MAY</span>
+              <span class="event-day">10</span>
+            </div>
+            <div class="event-details">
+              <h4>Bar Convent Berlin</h4>
+              <span class="event-location">Berlin, Germany</span>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="events-see-all">View All Events &rarr;</a>
+      </div>
+
+      <!-- FlavourBlaster Ad -->
+      <div class="sidebar-ad reveal reveal-d2">
+        <a href="#"><img src="sponsor.jpg" alt="FlavourBlaster – Sponsored" style="width:100%;border-radius:var(--radius);display:block;"></a>
+      </div>
+
+  </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer reveal">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-text">BarMagazine&trade;</div>
+      <p class="footer-desc">We offer a wide range of content for bar enthusiasts, from classic cocktail recipes to discovering the best bars worldwide.</p>
+      <div class="footer-social">
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">Latest</a></li>
+        <li><a href="#">Bars</a></li>
+        <li><a href="#">People</a></li>
+        <li><a href="#">Cocktails</a></li>
+        <li><a href="#">Awards</a></li>
+        <li><a href="#">Brands</a></li>
+        <li><a href="#">Events</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p class="footer-contact-text">We'd love to hear from you! Whether you're interested in partnerships, press opportunities, or simply want to connect with our team, reach out anytime.</p>
+      <span class="footer-email">Just send an email to:<br>office@barmagazine.com</span>
+      <p class="footer-contact-text">Our team is based across the US, Europe, and Asia, giving us a truly global perspective and presence.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 BarMagazine. All Rights Reserved.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /container -->
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
